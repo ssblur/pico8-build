@@ -21,8 +21,8 @@ runs:
     - name: Add inputs
       run: |
         echo "PICO8_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
-        echo "PICO8_OUTPUT"=${{ inputs.output }}" >> $GITHUB_ENV
-        echo "PICO8_INPUT"=${{ inputs.input }}" >> $GITHUB_ENV
+        echo "PICO8_OUTPUT=${{ inputs.output }}" >> $GITHUB_ENV
+        echo "PICO8_INPUT=${{ inputs.input }}" >> $GITHUB_ENV
       shell: bash
     - name: Build
       id: output
