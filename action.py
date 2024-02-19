@@ -1,11 +1,12 @@
 from urllib.request import urlopen
-from os import getenv
+from os import getenv, chmod
 from json import loads
 from platform import system, architecture, uname, platform
 from ssl import _create_unverified_context
 from zipfile import ZipFile
 from os.path import isfile
 from subprocess import run
+from stat import S_IXUSR
 
 TOKEN = getenv("PICO8_TOKEN")
 OUTPUT = getenv("PICO8_OUTPUT")
@@ -48,6 +49,7 @@ def main():
     if platform().startswith("Windows"):
         run(["pico-8/pico8.exe", "-export", OUTPUT, INPUT])
     else:
+        chmod("pico-8/pico8", S_IXUSR)
         run(["pico-8/pico8", "-export", OUTPUT, INPUT])
 
 if __name__ == "__main__":
