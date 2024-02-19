@@ -33,7 +33,7 @@ def main():
                 for option in download["download_struct"]:
                     if (
                         option["name"] == "zip"
-                        or option["name"] == "raspi" and uname()[4].startsWith("arm")
+                        or option["name"] == "raspi" and uname()[4].startswith("arm")
                         or option["name"] == "64-bit" and architecture()[0] == "64bit"
                         or option["name"] == "32-bit" and architecture()[0] == "32bit"
                     ):
