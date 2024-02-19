@@ -50,7 +50,7 @@ def main():
         run(["pico-8/pico8.exe", "-export", OUTPUT, INPUT])
     else:
         chmod("pico-8/pico8", S_IXUSR)
-        run(["pico-8/pico8", "-export", OUTPUT, INPUT])
+        run(["pico-8/pico8", INPUT, "-export", OUTPUT])
 
 if __name__ == "__main__":
     main()
