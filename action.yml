@@ -1,0 +1,30 @@
+name: 'PICO-8 Build Action'
+description: 'Downloads a PICO-8 console using your Humble Bundle key and builds a game'
+inputs:
+  token:
+    description: 'The PICO-8 key for use in Humble Bundle'
+    required: true
+  input:
+    description: 'The filename for the p8 to compile.'
+    required: true
+  output:
+    description: 'The filename to output. See PICO-8 documentation for output formats'
+    required: false
+    default: 'game.html'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Add inputs
+      run: |
+        echo "PICO8_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
+        echo "PICO8_OUTPUT"=${{ inputs.output }}" >> $GITHUB_ENV
+        echo "PICO8_INPUT"=${{ inputs.input }}" >> $GITHUB_ENV
+      shell: bash
+    - name: Build
+      id: output
+      run: python ${{ github.action_path }}/action.py
+      shell: bash
